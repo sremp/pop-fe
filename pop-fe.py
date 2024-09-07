@@ -3683,9 +3683,11 @@ def install_deps():
             subprocess.call(['cmake', '.'])
             subprocess.call(['make'])
             os.chdir('../..')
-        # PSL1GHT
+        # PSL1GHT/pkgcrypt
         try:
-            os.stat('PSL1GHT')
+            ps3py = ','.join(os.listdir('PSL1GHT/tools/ps3py'))
+            if not re.search('(pkgcrypt\.cpython)*(\.so)', ps3py):
+                exit(1)
             print('PSL1GHT is already installed')
         except:
             print('Cloning PSL1GHT')
